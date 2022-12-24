@@ -168,6 +168,9 @@ while True:
             left_target_time = utime.ticks_add(utime.ticks_ms(), int(urandom.uniform(min_time2, max_time2)*1000))
             right_target_time = utime.ticks_add(utime.ticks_ms(), int(urandom.uniform(min_time2, max_time2)*1000))
 
+            print(f"Left target time: {left_target_time}")
+            print(f"Right target time: {right_target_time}")
+
             #Check if a player presses too early
             while utime.ticks_diff(max(left_target_time, right_target_time), utime.ticks_ms()) >= 0:
                 left_button.irq(trigger=Pin.IRQ_RISING, handler=latest_button_handler)
@@ -193,7 +196,7 @@ while True:
         left_led.value(0)
         right_led.value(0)
         start = False
-        pressed_latest = []
+        pressed_latest = {}
         
     else:
         utime.sleep(1)
